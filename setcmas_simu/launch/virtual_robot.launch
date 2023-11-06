@@ -1,0 +1,19 @@
+<launch>
+
+  <arg name="tb3_robot_no" default="1"/>  
+  <arg name="tb3_x0" default="0.0"/>
+  <arg name="tb3_y0" default="0.0"/>
+  <arg name="tb3_theta0" default="0.0"/>
+  <arg name="tb3_child_frame_id" default="tb3_1"/>
+ 
+
+  <node pkg="setcmas_simu" type="virtual_robot.py" name="virtual_robot" output="screen">
+    <param name="robot_no" value="$(arg tb3_robot_no)" />
+    <param name="x0" value="$(arg tb3_x0)" />
+    <param name="y0" value="$(arg tb3_y0)" />
+    <param name="theta0" value="$(arg tb3_theta0)" />
+    <param name="child_frame_id" value="$(arg tb3_child_frame_id)" />
+  </node>
+
+
+</launch>

@@ -1,0 +1,137 @@
+<launch>
+
+  <arg name="nb_robots" default="4"/>
+  
+  <arg name="tb3_1_x0" default="5.0"/>
+  <arg name="tb3_1_y0" default="5.0"/>
+  <arg name="tb3_1_theta0" default="0.0"/>
+
+  <arg name="tb3_2_x0" default="5.0"/>
+  <arg name="tb3_2_y0" default="-5.0"/>
+  <arg name="tb3_2_theta0" default="0.0"/>
+
+  <arg name="tb3_3_x0" default="-5.0"/>
+  <arg name="tb3_3_y0" default="-5.0"/>
+  <arg name="tb3_3_theta0" default="0.0"/>
+
+  <arg name="tb3_4_x0" default="-5.0"/>
+  <arg name="tb3_4_y0" default="5.0"/>
+  <arg name="tb3_4_theta0" default="0.0"/>
+
+  <arg name="tb3_5_x0" default="0.0"/>
+  <arg name="tb3_5_y0" default="5.0"/>
+  <arg name="tb3_5_theta0" default="0.0"/>
+
+  <arg name="tb3_6_x0" default="5.0"/>
+  <arg name="tb3_6_y0" default="0.0"/>
+  <arg name="tb3_6_theta0" default="0.0"/>
+
+  <arg name="tb3_7_x0" default="0.0"/>
+  <arg name="tb3_7_y0" default="-5.0"/>
+  <arg name="tb3_7_theta0" default="0.0"/>
+
+  <arg name="tb3_8_x0" default="-5.0"/>
+  <arg name="tb3_8_y0" default="0.0"/>
+  <arg name="tb3_8_theta0" default="0.0"/>
+
+  <arg name="rviz_gui" default="True"/>
+
+
+
+<group ns = "tb3_1">
+  <include file="$(find setcmas_simu)/launch/virtual_robot.launch">
+    <arg name="tb3_robot_no" value="1" />
+    <arg name="tb3_x0" value="$(arg tb3_1_x0)" />
+    <arg name="tb3_y0" value="$(arg tb3_1_y0)" />
+    <arg name="tb3_theta0" value="$(arg tb3_1_theta0)" />
+    <arg name="tb3_child_frame_id" value="tb3_1" />
+  </include>
+</group>
+
+
+<group ns = "tb3_2">
+  <include file="$(find setcmas_simu)/launch/virtual_robot.launch" if="$(eval arg('nb_robots')>1)">
+    <arg name="tb3_robot_no" value="2" />
+    <arg name="tb3_x0" value="$(arg tb3_2_x0)" />
+    <arg name="tb3_y0" value="$(arg tb3_2_y0)" />
+    <arg name="tb3_theta0" value="$(arg tb3_2_theta0)" />
+    <arg name="tb3_child_frame_id" value="tb3_2" />
+  </include>
+</group>
+
+
+
+<group ns = "tb3_3">
+  <include file="$(find setcmas_simu)/launch/virtual_robot.launch" if="$(eval arg('nb_robots')>2)">
+    <arg name="tb3_robot_no" value="3" />
+    <arg name="tb3_x0" value="$(arg tb3_3_x0)" />
+    <arg name="tb3_y0" value="$(arg tb3_3_y0)" />
+    <arg name="tb3_theta0" value="$(arg tb3_3_theta0)" />
+    <arg name="tb3_child_frame_id" value="tb3_3" />
+  </include>
+</group>
+
+
+
+<group ns = "tb3_4">
+  <include file="$(find setcmas_simu)/launch/virtual_robot.launch" if="$(eval arg('nb_robots')>3)">
+    <arg name="tb3_robot_no" value="4" />
+    <arg name="tb3_x0" value="$(arg tb3_4_x0)" />
+    <arg name="tb3_y0" value="$(arg tb3_4_y0)" />
+    <arg name="tb3_theta0" value="$(arg tb3_4_theta0)" />
+    <arg name="tb3_child_frame_id" value="tb3_4" />
+  </include>
+</group>
+
+
+
+<group ns = "tb3_5">
+  <include file="$(find setcmas_simu)/launch/virtual_robot.launch" if="$(eval arg('nb_robots')>4)">
+    <arg name="tb3_robot_no" value="5" />
+    <arg name="tb3_x0" value="$(arg tb3_5_x0)" />
+    <arg name="tb3_y0" value="$(arg tb3_5_y0)" />
+    <arg name="tb3_theta0" value="$(arg tb3_5_theta0)" />
+    <arg name="tb3_child_frame_id" value="tb3_5" />
+  </include>
+</group>
+
+
+<group ns = "tb3_6">
+  <include file="$(find setcmas_simu)/launch/virtual_robot.launch" if="$(eval arg('nb_robots')>5)">
+    <arg name="tb3_robot_no" value="6" />
+    <arg name="tb3_x0" value="$(arg tb3_6_x0)" />
+    <arg name="tb3_y0" value="$(arg tb3_6_y0)" />
+    <arg name="tb3_theta0" value="$(arg tb3_6_theta0)" />
+    <arg name="tb3_child_frame_id" value="tb3_6" />
+  </include>
+</group>
+
+
+<group ns = "tb3_7">
+  <include file="$(find setcmas_simu)/launch/virtual_robot.launch" if="$(eval arg('nb_robots')>6)">
+    <arg name="tb3_robot_no" value="7" />
+    <arg name="tb3_x0" value="$(arg tb3_7_x0)" />
+    <arg name="tb3_y0" value="$(arg tb3_7_y0)" />
+    <arg name="tb3_theta0" value="$(arg tb3_7_theta0)" />
+    <arg name="tb3_child_frame_id" value="tb3_7" />
+  </include>
+</group>
+
+
+<group ns = "tb3_8">
+  <include file="$(find setcmas_simu)/launch/virtual_robot.launch" if="$(eval arg('nb_robots')>7)">
+    <arg name="tb3_robot_no" value="8" />
+    <arg name="tb3_x0" value="$(arg tb3_8_x0)" />
+    <arg name="tb3_y0" value="$(arg tb3_8_y0)" />
+    <arg name="tb3_theta0" value="$(arg tb3_8_theta0)" />
+    <arg name="tb3_child_frame_id" value="tb3_8" />
+  </include>
+</group>
+
+
+
+<group if="$(eval arg('rviz_gui')==True)">
+	 <node pkg="rviz" type="rviz" name="visu_rviz" args="-d $(find setcmas_simu)/rviz/setcmas_virtual_robots.rviz"/>
+</group> 
+
+</launch>
