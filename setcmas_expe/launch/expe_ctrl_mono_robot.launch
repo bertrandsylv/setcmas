@@ -1,0 +1,42 @@
+<launch>
+
+
+<!-- 
+============================================================ 
+=========== MONO ROBOT CONTROLLER FOR EXPERIMENTS ==========
+============================================================ 
+-->
+
+
+<arg name="nb_robots" default="1"/>
+<arg name="algo" default="wp_nav"/>
+<arg name="exercise" default="False"/>
+
+<node pkg="joy" type="joy_node" name="joy_node" output="screen"/>
+<node pkg="setcmas_expe" type="joypad_pause_tb.py" name="joypad_pause_node" output="screen"/>
+
+
+
+
+<!-- ============ TURTLEBOT 1 ============= -->
+
+
+    <node pkg="setcmas_ctrl" type="si_to_uni.py" name="si_to_uni_tb3_1" output="screen">
+      <remap from="/odom" to="/qualisys/tb3_1/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_1/cmd_cart_vel"/>
+      <remap from="/pause" to="/tb3_1/pause" />
+      <remap from="/cmd_vel" to="/tb3_1/cmd_vel" />
+    </node> 
+
+    <node pkg="setcmas_ctrl" type="controller_cart_vel.py" name="controller_cart_vel_tb3_1" output="screen">
+      <param name="robotNo" value="1" />
+      <param name="nbRobots" value="$(arg nb_robots)" />
+      <param name="exercise" value="$(arg exercise)" />
+      <param name="algo" value="$(arg algo)" />
+      <remap from="/odom1" to="/qualisys/tb3_1/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_1/cmd_cart_vel" />
+    </node> 
+
+    
+
+</launch>

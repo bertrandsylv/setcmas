@@ -1,0 +1,263 @@
+<launch>
+
+
+<!-- 
+============================================================ 
+=========== MULTI ROBOT CONTROLLER FOR SIMULATION ==========
+============================================================ 
+-->
+
+
+<arg name="nb_robots" default="3"/>
+<arg name="algo" default="consensus"/>
+<arg name="exercise" default="False"/>
+
+<node pkg="joy" type="joy_node" name="joy_node" output="screen"/>
+<node pkg="setcmas_expe" type="joypad_pause_tb.py" name="joypad_pause_node" output="screen"/>
+
+
+
+<!-- ============ TURTLEBOT 1 ============= -->
+
+
+    <node pkg="setcmas_ctrl" type="si_to_uni.py" name="si_to_uni_tb3_1" output="screen">
+      <remap from="/odom" to="/qualisys/tb3_1/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_1/cmd_cart_vel"/>
+      <remap from="/pause" to="/tb3_1/pause" />
+      <remap from="/cmd_vel" to="/tb3_1/cmd_vel" />
+    </node> 
+
+
+    <node pkg="setcmas_ctrl" type="controller_cart_vel.py" name="controller_cart_vel_tb3_1" output="screen">
+      <param name="robotNo" value="1" />
+      <param name="nbRobots" value="$(arg nb_robots)" />
+      <param name="exercise" value="$(arg exercise)" />
+      <param name="algo" value="$(arg algo)" />
+      <remap from="/odom1" to="/qualisys/tb3_1/odom"/>
+      <remap from="/odom2" to="/qualisys/tb3_2/odom"/>
+      <remap from="/odom3" to="/qualisys/tb3_3/odom"/>
+      <remap from="/odom4" to="/qualisys/tb3_4/odom"/>
+      <remap from="/odom5" to="/qualisys/tb3_5/odom"/>
+      <remap from="/odom6" to="/qualisys/tb3_6/odom"/>
+      <remap from="/odom7" to="/qualisys/tb3_7/odom"/>
+      <remap from="/odom8" to="/qualisys/tb3_8/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_1/cmd_cart_vel" />
+    </node> 
+
+
+<!-- ============ TURTLEBOT 2 ============= -->
+
+<group if="$(eval arg('nb_robots')>1)">
+
+    <node pkg="setcmas_ctrl" type="si_to_uni.py" name="si_to_uni_tb3_2" output="screen">
+      <remap from="/odom" to="/qualisys/tb3_2/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_2/cmd_cart_vel"/>
+      <remap from="/pause" to="/tb3_2/pause" />
+      <remap from="/cmd_vel" to="/tb3_2/cmd_vel" />
+    </node> 
+
+
+    <node pkg="setcmas_ctrl" type="controller_cart_vel.py" name="controller_cart_vel_tb3_2" output="screen">
+      <param name="robotNo" value="2" />
+      <param name="nbRobots" value="$(arg nb_robots)" />
+      <param name="exercise" value="$(arg exercise)" />
+      <param name="algo" value="$(arg algo)" />
+      <remap from="/odom1" to="/qualisys/tb3_1/odom"/>
+      <remap from="/odom2" to="/qualisys/tb3_2/odom"/>
+      <remap from="/odom3" to="/qualisys/tb3_3/odom"/>
+      <remap from="/odom4" to="/qualisys/tb3_4/odom"/>
+      <remap from="/odom5" to="/qualisys/tb3_5/odom"/>
+      <remap from="/odom6" to="/qualisys/tb3_6/odom"/>
+      <remap from="/odom7" to="/qualisys/tb3_7/odom"/>
+      <remap from="/odom8" to="/qualisys/tb3_8/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_2/cmd_cart_vel" />
+    </node>
+ 
+</group>
+
+
+<!-- ============ TURTLEBOT 3 ============= -->
+
+<group if="$(eval arg('nb_robots')>2)">
+
+    <node pkg="setcmas_ctrl" type="si_to_uni.py" name="si_to_uni_tb3_3" output="screen">
+      <remap from="/odom" to="/qualisys/tb3_3/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_3/cmd_cart_vel"/>
+      <remap from="/pause" to="/tb3_3/pause" />
+      <remap from="/cmd_vel" to="/tb3_3/cmd_vel" />
+    </node> 
+
+
+    <node pkg="setcmas_ctrl" type="controller_cart_vel.py" name="controller_cart_vel_tb3_3" output="screen">
+      <param name="robotNo" value="3" />
+      <param name="nbRobots" value="$(arg nb_robots)" />
+      <param name="exercise" value="$(arg exercise)" />
+      <param name="algo" value="$(arg algo)" />
+      <remap from="/odom1" to="/qualisys/tb3_1/odom"/>
+      <remap from="/odom2" to="/qualisys/tb3_2/odom"/>
+      <remap from="/odom3" to="/qualisys/tb3_3/odom"/>
+      <remap from="/odom4" to="/qualisys/tb3_4/odom"/>
+      <remap from="/odom5" to="/qualisys/tb3_5/odom"/>
+      <remap from="/odom6" to="/qualisys/tb3_6/odom"/>
+      <remap from="/odom7" to="/qualisys/tb3_7/odom"/>
+      <remap from="/odom8" to="/qualisys/tb3_8/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_3/cmd_cart_vel" />
+    </node> 
+
+</group>
+
+
+<!-- ============ TURTLEBOT 4 ============= -->
+
+<group if="$(eval arg('nb_robots')>3)">
+
+    <node pkg="setcmas_ctrl" type="si_to_uni.py" name="si_to_uni_tb3_4" output="screen">
+      <remap from="/odom" to="/qualisys/tb3_4/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_4/cmd_cart_vel"/>
+      <remap from="/pause" to="/tb3_4/pause" />
+      <remap from="/cmd_vel" to="/tb3_4/cmd_vel" />
+    </node> 
+    
+
+    <node pkg="setcmas_ctrl" type="controller_cart_vel.py" name="controller_cart_vel_tb3_4" output="screen">
+      <param name="robotNo" value="4" />
+      <param name="nbRobots" value="$(arg nb_robots)" />
+      <param name="exercise" value="$(arg exercise)" />
+      <param name="algo" value="$(arg algo)" />
+      <remap from="/odom1" to="/qualisys/tb3_1/odom"/>
+      <remap from="/odom2" to="/qualisys/tb3_2/odom"/>
+      <remap from="/odom3" to="/qualisys/tb3_3/odom"/>
+      <remap from="/odom4" to="/qualisys/tb3_4/odom"/>
+      <remap from="/odom5" to="/qualisys/tb3_5/odom"/>
+      <remap from="/odom6" to="/qualisys/tb3_6/odom"/>
+      <remap from="/odom7" to="/qualisys/tb3_7/odom"/>
+      <remap from="/odom8" to="/qualisys/tb3_8/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_4/cmd_cart_vel" />
+    </node> 
+
+</group>
+
+
+<!-- ============ TURTLEBOT 5 ============= -->
+
+<group if="$(eval arg('nb_robots')>4)">
+
+    <node pkg="setcmas_ctrl" type="si_to_uni.py" name="si_to_uni_tb3_5" output="screen">
+      <remap from="/odom" to="/qualisys/tb3_5/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_5/cmd_cart_vel"/>
+      <remap from="/pause" to="/tb3_5/pause" />
+      <remap from="/cmd_vel" to="/tb3_5/cmd_vel" />
+    </node> 
+
+    <node pkg="setcmas_ctrl" type="controller_cart_vel.py" name="controller_cart_vel_tb3_5" output="screen">
+      <param name="robotNo" value="5" />
+      <param name="nbRobots" value="$(arg nb_robots)" />
+      <param name="exercise" value="$(arg exercise)" />
+      <param name="algo" value="$(arg algo)" />
+      <remap from="/odom1" to="/qualisys/tb3_1/odom"/>
+      <remap from="/odom2" to="/qualisys/tb3_2/odom"/>
+      <remap from="/odom3" to="/qualisys/tb3_3/odom"/>
+      <remap from="/odom4" to="/qualisys/tb3_4/odom"/>
+      <remap from="/odom5" to="/qualisys/tb3_5/odom"/>
+      <remap from="/odom6" to="/qualisys/tb3_6/odom"/>
+      <remap from="/odom7" to="/qualisys/tb3_7/odom"/>
+      <remap from="/odom8" to="/qualisys/tb3_8/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_5/cmd_cart_vel" />
+    </node> 
+
+</group>
+    
+
+
+<!-- ============ TURTLEBOT 6 ============= -->
+
+<group if="$(eval arg('nb_robots')>5)">
+
+    <node pkg="setcmas_ctrl" type="si_to_uni.py" name="si_to_uni_tb3_6" output="screen">
+      <remap from="/odom" to="/qualisys/tb3_6/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_6/cmd_cart_vel"/>
+      <remap from="/pause" to="/tb3_6/pause" />
+      <remap from="/cmd_vel" to="/tb3_6/cmd_vel" />
+    </node> 
+
+    <node pkg="setcmas_ctrl" type="controller_cart_vel.py" name="controller_cart_vel_tb3_6" output="screen">
+      <param name="robotNo" value="6" />
+      <param name="nbRobots" value="$(arg nb_robots)" />
+      <param name="exercise" value="$(arg exercise)" />
+      <param name="algo" value="$(arg algo)" />
+      <remap from="/odom1" to="/qualisys/tb3_1/odom"/>
+      <remap from="/odom2" to="/qualisys/tb3_2/odom"/>
+      <remap from="/odom3" to="/qualisys/tb3_3/odom"/>
+      <remap from="/odom4" to="/qualisys/tb3_4/odom"/>
+      <remap from="/odom5" to="/qualisys/tb3_5/odom"/>
+      <remap from="/odom6" to="/qualisys/tb3_6/odom"/>
+      <remap from="/odom7" to="/qualisys/tb3_7/odom"/>
+      <remap from="/odom8" to="/qualisys/tb3_8/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_6/cmd_cart_vel" />
+    </node>   
+
+</group>
+
+
+<!-- ============ TURTLEBOT 7 ============= -->
+
+<group if="$(eval arg('nb_robots')>6)">
+
+
+    <node pkg="setcmas_ctrl" type="si_to_uni.py" name="si_to_uni_tb3_7" output="screen">
+      <remap from="/odom" to="/qualisys/tb3_7/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_7/cmd_cart_vel"/>
+      <remap from="/pause" to="/tb3_7/pause" />
+      <remap from="/cmd_vel" to="/tb3_7/cmd_vel" />
+    </node> 
+
+    <node pkg="setcmas_ctrl" type="controller_cart_vel.py" name="controller_cart_vel_tb3_7" output="screen">
+      <param name="robotNo" value="7" />
+      <param name="nbRobots" value="$(arg nb_robots)" />
+      <param name="exercise" value="$(arg exercise)" />
+      <param name="algo" value="$(arg algo)" />
+      <remap from="/odom1" to="/qualisys/tb3_1/odom"/>
+      <remap from="/odom2" to="/qualisys/tb3_2/odom"/>
+      <remap from="/odom3" to="/qualisys/tb3_3/odom"/>
+      <remap from="/odom4" to="/qualisys/tb3_4/odom"/>
+      <remap from="/odom5" to="/qualisys/tb3_5/odom"/>
+      <remap from="/odom6" to="/qualisys/tb3_6/odom"/>
+      <remap from="/odom7" to="/qualisys/tb3_7/odom"/>
+      <remap from="/odom8" to="/qualisys/tb3_8/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_7/cmd_cart_vel" />
+    </node>  
+
+</group>
+
+
+<!-- ============ TURTLEBOT 8 ============= -->
+
+<group if="$(eval arg('nb_robots')>7)">
+
+    <node pkg="setcmas_ctrl" type="si_to_uni.py" name="si_to_uni_tb3_8" output="screen">
+      <remap from="/odom" to="/qualisys/tb3_8/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_8/cmd_cart_vel"/>
+      <remap from="/pause" to="/tb3_8/pause" />
+      <remap from="/cmd_vel" to="/tb3_8/cmd_vel" />
+    </node> 
+
+    <node pkg="setcmas_ctrl" type="controller_cart_vel.py" name="controller_cart_vel_tb3_8" output="screen">
+      <param name="robotNo" value="8" />
+      <param name="nbRobots" value="$(arg nb_robots)" />
+      <param name="exercise" value="$(arg exercise)" />
+      <param name="algo" value="$(arg algo)" />
+      <remap from="/odom1" to="/qualisys/tb3_1/odom"/>
+      <remap from="/odom2" to="/qualisys/tb3_2/odom"/>
+      <remap from="/odom3" to="/qualisys/tb3_3/odom"/>
+      <remap from="/odom4" to="/qualisys/tb3_4/odom"/>
+      <remap from="/odom5" to="/qualisys/tb3_5/odom"/>
+      <remap from="/odom6" to="/qualisys/tb3_6/odom"/>
+      <remap from="/odom7" to="/qualisys/tb3_7/odom"/>
+      <remap from="/odom8" to="/qualisys/tb3_8/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_8/cmd_cart_vel" />
+    </node>  
+
+</group>
+    
+
+</launch>
