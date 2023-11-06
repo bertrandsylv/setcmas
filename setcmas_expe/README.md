@@ -4,7 +4,7 @@
 
 Example of use: 
 
-		roslaunch setcmas_expe expe_ctrl_mono_robot.launch algo:=wn_nav
+		roslaunch setcmas_expe expe_ctrl_mono_robot.launch algo:=wp_nav
 
 		roslaunch setcmas_expe expe_ctrl_multi_robots.launch nb_robots:=6 algo:=consensus
 
