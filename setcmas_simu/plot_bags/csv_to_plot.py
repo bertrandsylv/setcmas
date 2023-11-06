@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-(c) Sylvain Bertrand, 2023
+ Sylvain Bertrand, 2023
 
 """
 

@@ -1,0 +1,38 @@
+<launch>
+
+
+<!-- 
+============================================================ 
+=========== MONO ROBOT CONTROLLER FOR SIMULATION ==========
+============================================================ 
+-->
+
+
+<arg name="nb_robots" default="1"/>
+<arg name="algo" default="WP_nav"/>
+<arg name="exercise" default="True"/>
+
+
+
+<!-- ============ TURTLEBOT 1 ============= -->
+
+
+  <group ns = "tb3_1">
+    <node pkg="setcmas_ctrl" type="si_to_uni.py" name="si_to_uni" output="screen">
+      <remap from="/odom" to="/tb3_1/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_1/cmd_cart_vel"/>
+    </node> 
+  </group>
+
+    <node pkg="setcmas_ctrl" type="controller_cart_vel.py" name="controller_cart_vel_tb3_1" output="screen">
+      <param name="robotNo" value="1" />
+      <param name="nbRobots" value="$(arg nb_robots)" />
+      <param name="exercise" value="$(arg exercise)" />
+      <param name="algo" value="$(arg algo)" />
+      <remap from="/odom1" to="/tb3_1/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_1/cmd_cart_vel" />
+    </node> 
+
+    
+
+</launch>

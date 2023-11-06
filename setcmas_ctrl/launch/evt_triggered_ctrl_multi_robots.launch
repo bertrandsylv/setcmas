@@ -1,0 +1,303 @@
+<launch>
+
+
+<!-- 
+============================================================ 
+=========== MULTI ROBOT CONTROLLER FOR SIMULATION ==========
+============================================================ 
+-->
+
+
+<arg name="nb_robots" default="4"/>
+<arg name="exercise" default="True"/>
+
+
+
+<!-- ============ TURTLEBOT 1 ============= -->
+
+
+  <group ns = "tb3_1">
+    <node pkg="setcmas_ctrl" type="si_to_uni.py" name="si_to_uni" output="screen">
+      <remap from="/odom" to="/tb3_1/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_1/cmd_cart_vel"/>
+    </node> 
+   
+    <node pkg="setcmas_ctrl" type="evt_triggered_comm.py" name="evt_triggered_comm_tb3_1" output="screen">
+       <param name="exercise" value="$(arg exercise)" />
+       <remap from="/odom" to="/tb3_1/odom"/>
+       <remap from="/trig_odom" to="/tb3_1/trig_odom" />
+       <remap from="/trig_event" to="/tb3_1/trig_event" />
+    </node> 
+  </group>
+
+    <node pkg="setcmas_ctrl" type="controller_cart_vel.py" name="controller_cart_vel_tb3_1" output="screen">
+      <param name="robotNo" value="1" />
+      <param name="nbRobots" value="$(arg nb_robots)" />
+      <param name="exercise" value="$(arg exercise)" />
+      <remap from="/odom1" to="/tb3_1/trig_odom"/>
+      <remap from="/odom2" to="/tb3_2/trig_odom"/>
+      <remap from="/odom3" to="/tb3_3/trig_odom"/>
+      <remap from="/odom4" to="/tb3_4/trig_odom"/>
+      <remap from="/odom5" to="/tb3_5/trig_odom"/>
+      <remap from="/odom6" to="/tb3_6/trig_odom"/>
+      <remap from="/odom7" to="/tb3_7/trig_odom"/>
+      <remap from="/odom8" to="/tb3_8/trig_odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_1/cmd_cart_vel" />
+    </node> 
+
+
+<!-- ============ TURTLEBOT 2 ============= -->
+
+<group if="$(eval arg('nb_robots')>1)">
+
+  <group ns = "tb3_2">
+    <node pkg="setcmas_ctrl" type="si_to_uni.py" name="si_to_uni" output="screen">
+      <remap from="/odom" to="/tb3_2/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_2/cmd_cart_vel"/>
+    </node> 
+
+    <node pkg="setcmas_ctrl" type="evt_triggered_comm.py" name="evt_triggered_comm_tb3_2" output="screen">
+       <param name="exercise" value="$(arg exercise)" />
+       <remap from="/odom" to="/tb3_2/odom"/>
+       <remap from="/trig_odom" to="/tb3_2/trig_odom" />
+       <remap from="/trig_event" to="/tb3_2/trig_event" />
+    </node> 
+  </group>
+
+    <node pkg="setcmas_ctrl" type="controller_cart_vel.py" name="controller_cart_vel_tb3_2" output="screen">
+      <param name="robotNo" value="2" />
+      <param name="nbRobots" value="$(arg nb_robots)" />
+      <param name="exercise" value="$(arg exercise)" />
+      <remap from="/odom1" to="/tb3_1/trig_odom"/>
+      <remap from="/odom2" to="/tb3_2/trig_odom"/>
+      <remap from="/odom3" to="/tb3_3/trig_odom"/>
+      <remap from="/odom4" to="/tb3_4/trig_odom"/>
+      <remap from="/odom5" to="/tb3_5/trig_odom"/>
+      <remap from="/odom6" to="/tb3_6/trig_odom"/>
+      <remap from="/odom7" to="/tb3_7/trig_odom"/>
+      <remap from="/odom8" to="/tb3_8/trig_odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_2/cmd_cart_vel" />
+    </node>
+ 
+</group>
+
+
+<!-- ============ TURTLEBOT 3 ============= -->
+
+<group if="$(eval arg('nb_robots')>2)">
+
+  <group ns = "tb3_3">
+    <node pkg="setcmas_ctrl" type="si_to_uni.py" name="si_to_uni" output="screen">
+      <remap from="/odom" to="/tb3_3/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_3/cmd_cart_vel"/>
+    </node> 
+
+    <node pkg="setcmas_ctrl" type="evt_triggered_comm.py" name="evt_triggered_comm_tb3_3" output="screen">
+       <param name="exercise" value="$(arg exercise)" />
+       <remap from="/odom" to="/tb3_3/odom"/>
+       <remap from="/trig_odom" to="/tb3_3/trig_odom" />
+       <remap from="/trig_event" to="/tb3_3/trig_event" />
+    </node> 
+  </group>
+
+    <node pkg="setcmas_ctrl" type="controller_cart_vel.py" name="controller_cart_vel_tb3_3" output="screen">
+      <param name="robotNo" value="3" />
+      <param name="nbRobots" value="$(arg nb_robots)" />
+      <param name="exercise" value="$(arg exercise)" />
+      <remap from="/odom1" to="/tb3_1/trig_odom"/>
+      <remap from="/odom2" to="/tb3_2/trig_odom"/>
+      <remap from="/odom3" to="/tb3_3/trig_odom"/>
+      <remap from="/odom4" to="/tb3_4/trig_odom"/>
+      <remap from="/odom5" to="/tb3_5/trig_odom"/>
+      <remap from="/odom6" to="/tb3_6/trig_odom"/>
+      <remap from="/odom7" to="/tb3_7/trig_odom"/>
+      <remap from="/odom8" to="/tb3_8/trig_odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_3/cmd_cart_vel" />
+    </node> 
+
+</group>
+
+
+<!-- ============ TURTLEBOT 4 ============= -->
+
+<group if="$(eval arg('nb_robots')>3)">
+
+  <group ns = "tb3_4">
+    <node pkg="setcmas_ctrl" type="si_to_uni.py" name="si_to_uni" output="screen">
+      <remap from="/odom" to="/tb3_4/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_4/cmd_cart_vel"/>
+    </node> 
+
+    <node pkg="setcmas_ctrl" type="evt_triggered_comm.py" name="evt_triggered_comm_tb3_4" output="screen">
+       <param name="exercise" value="$(arg exercise)" />
+       <remap from="/odom" to="/tb3_4/odom"/>
+       <remap from="/trig_odom" to="/tb3_4/trig_odom" />
+       <remap from="/trig_event" to="/tb3_4/trig_event" />
+    </node> 
+  </group>
+
+    <node pkg="setcmas_ctrl" type="controller_cart_vel.py" name="controller_cart_vel_tb3_4" output="screen">
+      <param name="robotNo" value="4" />
+      <param name="nbRobots" value="$(arg nb_robots)" />
+      <param name="exercise" value="$(arg exercise)" />
+      <remap from="/odom1" to="/tb3_1/trig_odom"/>
+      <remap from="/odom2" to="/tb3_2/trig_odom"/>
+      <remap from="/odom3" to="/tb3_3/trig_odom"/>
+      <remap from="/odom4" to="/tb3_4/trig_odom"/>
+      <remap from="/odom5" to="/tb3_5/trig_odom"/>
+      <remap from="/odom6" to="/tb3_6/trig_odom"/>
+      <remap from="/odom7" to="/tb3_7/trig_odom"/>
+      <remap from="/odom8" to="/tb3_8/trig_odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_4/cmd_cart_vel" />
+    </node> 
+
+</group>
+
+
+<!-- ============ TURTLEBOT 5 ============= -->
+
+<group if="$(eval arg('nb_robots')>4)">
+
+  <group ns = "tb3_5">
+    <node pkg="setcmas_ctrl" type="si_to_uni.py" name="si_to_uni" output="screen">
+      <remap from="/odom" to="/tb3_5/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_5/cmd_cart_vel"/>
+    </node> 
+
+    <node pkg="setcmas_ctrl" type="evt_triggered_comm.py" name="evt_triggered_comm_tb3_5" output="screen">
+       <param name="exercise" value="$(arg exercise)" />
+       <remap from="/odom" to="/tb3_5/odom"/>
+       <remap from="/trig_odom" to="/tb3_5/trig_odom" />
+       <remap from="/trig_event" to="/tb3_5/trig_event" />
+    </node> 
+  </group>
+
+    <node pkg="setcmas_ctrl" type="controller_cart_vel.py" name="controller_cart_vel_tb3_5" output="screen">
+      <param name="robotNo" value="5" />
+      <param name="nbRobots" value="$(arg nb_robots)" />
+      <param name="exercise" value="$(arg exercise)" />
+      <remap from="/odom1" to="/tb3_1/trig_odom"/>
+      <remap from="/odom2" to="/tb3_2/trig_odom"/>
+      <remap from="/odom3" to="/tb3_3/trig_odom"/>
+      <remap from="/odom4" to="/tb3_4/trig_odom"/>
+      <remap from="/odom5" to="/tb3_5/trig_odom"/>
+      <remap from="/odom6" to="/tb3_6/trig_odom"/>
+      <remap from="/odom7" to="/tb3_7/trig_odom"/>
+      <remap from="/odom8" to="/tb3_8/trig_odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_5/cmd_cart_vel" />
+    </node> 
+
+</group>
+    
+
+
+<!-- ============ TURTLEBOT 6 ============= -->
+
+<group if="$(eval arg('nb_robots')>5)">
+
+  <group ns = "tb3_6">
+    <node pkg="setcmas_ctrl" type="si_to_uni.py" name="si_to_uni" output="screen">
+      <remap from="/odom" to="/tb3_6/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_6/cmd_cart_vel"/>
+    </node> 
+
+    <node pkg="setcmas_ctrl" type="evt_triggered_comm.py" name="evt_triggered_comm_tb3_6" output="screen">
+       <param name="exercise" value="$(arg exercise)" />
+       <remap from="/odom" to="/tb3_6/odom"/>
+       <remap from="/trig_odom" to="/tb3_6/trig_odom" />
+       <remap from="/trig_event" to="/tb3_6/trig_event" />
+    </node> 
+  </group>
+
+    <node pkg="setcmas_ctrl" type="controller_cart_vel.py" name="controller_cart_vel_tb3_6" output="screen">
+      <param name="robotNo" value="6" />
+      <param name="nbRobots" value="$(arg nb_robots)" />
+      <param name="exercise" value="$(arg exercise)" />
+      <remap from="/odom1" to="/tb3_1/trig_odom"/>
+      <remap from="/odom2" to="/tb3_2/trig_odom"/>
+      <remap from="/odom3" to="/tb3_3/trig_odom"/>
+      <remap from="/odom4" to="/tb3_4/trig_odom"/>
+      <remap from="/odom5" to="/tb3_5/trig_odom"/>
+      <remap from="/odom6" to="/tb3_6/trig_odom"/>
+      <remap from="/odom7" to="/tb3_7/trig_odom"/>
+      <remap from="/odom8" to="/tb3_8/trig_odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_6/cmd_cart_vel" />
+    </node>   
+
+</group>
+
+
+<!-- ============ TURTLEBOT 7 ============= -->
+
+<group if="$(eval arg('nb_robots')>6)">
+
+
+  <group ns = "tb3_7">
+    <node pkg="setcmas_ctrl" type="si_to_uni.py" name="si_to_uni" output="screen">
+      <remap from="/odom" to="/tb3_7/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_7/cmd_cart_vel"/>
+    </node> 
+
+    <node pkg="setcmas_ctrl" type="evt_triggered_comm.py" name="evt_triggered_comm_tb3_7" output="screen">
+       <param name="exercise" value="$(arg exercise)" />
+       <remap from="/odom" to="/tb3_7/odom"/>
+       <remap from="/trig_odom" to="/tb3_7/trig_odom" />
+       <remap from="/trig_event" to="/tb3_7/trig_event" />
+    </node> 
+  </group>
+
+    <node pkg="setcmas_ctrl" type="controller_cart_vel.py" name="controller_cart_vel_tb3_7" output="screen">
+      <param name="robotNo" value="7" />
+      <param name="nbRobots" value="$(arg nb_robots)" />
+      <param name="exercise" value="$(arg exercise)" />
+      <remap from="/odom1" to="/tb3_1/trig_odom"/>
+      <remap from="/odom2" to="/tb3_2/trig_odom"/>
+      <remap from="/odom3" to="/tb3_3/trig_odom"/>
+      <remap from="/odom4" to="/tb3_4/trig_odom"/>
+      <remap from="/odom5" to="/tb3_5/trig_odom"/>
+      <remap from="/odom6" to="/tb3_6/trig_odom"/>
+      <remap from="/odom7" to="/tb3_7/trig_odom"/>
+      <remap from="/odom8" to="/tb3_8/trig_odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_7/cmd_cart_vel" />
+    </node>  
+
+</group>
+
+
+<!-- ============ TURTLEBOT 8 ============= -->
+
+<group if="$(eval arg('nb_robots')>7)">
+
+  <group ns = "tb3_8">
+    <node pkg="setcmas_ctrl" type="si_to_uni.py" name="si_to_uni" output="screen">
+      <remap from="/odom" to="/tb3_8/odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_8/cmd_cart_vel"/>
+    </node> 
+
+    <node pkg="setcmas_ctrl" type="evt_triggered_comm.py" name="evt_triggered_comm_tb3_8" output="screen">
+       <param name="exercise" value="$(arg exercise)" />
+       <remap from="/odom" to="/tb3_8/odom"/>
+       <remap from="/trig_odom" to="/tb3_8/trig_odom" />
+       <remap from="/trig_event" to="/tb3_8/trig_event" />
+    </node> 
+  </group>
+
+    <node pkg="setcmas_ctrl" type="controller_cart_vel.py" name="controller_cart_vel_tb3_8" output="screen">
+      <param name="robotNo" value="8" />
+      <param name="nbRobots" value="$(arg nb_robots)" />
+      <param name="exercise" value="$(arg exercise)" />
+      <remap from="/odom1" to="/tb3_1/trig_odom"/>
+      <remap from="/odom2" to="/tb3_2/trig_odom"/>
+      <remap from="/odom3" to="/tb3_3/trig_odom"/>
+      <remap from="/odom4" to="/tb3_4/trig_odom"/>
+      <remap from="/odom5" to="/tb3_5/trig_odom"/>
+      <remap from="/odom6" to="/tb3_6/trig_odom"/>
+      <remap from="/odom7" to="/tb3_7/trig_odom"/>
+      <remap from="/odom8" to="/tb3_8/trig_odom"/>
+      <remap from="/cmd_cart_vel" to="/tb3_8/cmd_cart_vel" />
+    </node>  
+
+</group>
+    
+
+</launch>
