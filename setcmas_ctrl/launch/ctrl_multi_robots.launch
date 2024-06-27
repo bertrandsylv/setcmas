@@ -10,7 +10,7 @@
 
 <arg name="nb_robots" default="4"/>
 <arg name="algo" default="consensus"/>
-<arg name="exercise" default="True"/>
+<arg name="exercise" default="False"/>
 
 
 

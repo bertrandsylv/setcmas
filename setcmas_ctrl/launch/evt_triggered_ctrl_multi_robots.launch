@@ -9,7 +9,7 @@
 
 
 <arg name="nb_robots" default="4"/>
-<arg name="exercise" default="True"/>
+<arg name="exercise" default="False"/>
 
 
 

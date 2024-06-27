@@ -10,7 +10,7 @@
 
 <arg name="nb_robots" default="1"/>
 <arg name="algo" default="WP_nav"/>
-<arg name="exercise" default="True"/>
+<arg name="exercise" default="False"/>
 
 
 
