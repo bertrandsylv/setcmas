@@ -8,6 +8,10 @@ This version has been tested with ROS Noetic, Python 3.
 Documentation is work in progress. 
 Contact: sylvain.bertrand@onera.fr
 
+Associated paper: 
+S. Bertrand, "SETCMAS: An easy-to-use software stack to facilitate Simulations and
+Experiments in Teaching Control of Multi-Agent Systems", European Control Conference, Stockholm, Sweden, 2024.
+
 
 
 ## setcmas_ctrl
